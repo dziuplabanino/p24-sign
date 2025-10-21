@@ -9,7 +9,6 @@ export default function handler(req, res) {
 
   const merchantId = "354420"; // stała wartość
   const crc = "dd8322d9ded19b5a"; // <- zmień na swój CRC z p24
-  const currency = PLN;
   const data = {
     sessionId,
     merchantId,
