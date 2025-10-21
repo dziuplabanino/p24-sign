@@ -5,23 +5,16 @@ export default function handler(req, res) {
     return res.status(405).json({ error: "Only POST method allowed" });
   }
 
-  const { sessionId, amount, currency, env } = req.body;
+  const { sessionId, amount, currency } = req.body;
 
-  const merchantId = "354420"; // stała wartość
-  const crc = "dd8322d9ded19b5a"; // <- zmień na swój CRC z p24
-  const data = {
-    sessionId,
-    merchantId,
-    amount,
-    currency,
-    crc,
-  };
+  const merchantId = "354420"; // Twój merchantId
+  const posId = "354420"; // czasem wymagane
+  const crc = "dd8322d9ded19b5a"; // wpisz swój CRC z panelu P24
 
-  // Utwórz string do podpisania
-  const composeString = JSON.stringify(data, Object.keys(data).sort());
+  // P24 chce string w formacie: sessionId|merchantId|amount|currency|crc
+  const stringToSign = `${sessionId}|${merchantId}|${posId}|${amount}|${currency}|${crc}`;
 
-  // Wybierz algorytm (SHA384 lub SHA512)
-  const hash = crypto.createHash("sha384").update(composeString).digest("hex");
+  const hash = crypto.createHash("sha384").update(stringToSign).digest("hex");
 
   return res.status(200).json({ sign: hash });
 }
