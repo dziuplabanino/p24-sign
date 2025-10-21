@@ -8,7 +8,7 @@ export default function handler(req, res) {
   const { sessionId, amount, currency, env } = req.body;
 
   const merchantId = "354420"; // stała wartość
-  const crc = "d8322d9ded19b5ad"; // <- zmień na swój CRC z p24
+  const crc = "dd8322d9ded19b5a"; // <- zmień na swój CRC z p24
   const data = {
     sessionId,
     merchantId,
