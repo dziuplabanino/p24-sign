@@ -5,7 +5,7 @@ export default function handler(req, res) {
     return res.status(405).json({ error: "Only POST method allowed" });
   }
 
-  const { sessionId, amount, currency, env } = req.body;
+  const { sessionId, merchantId, amount, currency, env } = req.body;
 
   const merchantId = "354420"; // stała wartość
   const crc = "dd8322d9ded19b5a"; // <- zmień na swój CRC z p24
