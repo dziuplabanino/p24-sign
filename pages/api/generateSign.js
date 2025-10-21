@@ -14,7 +14,7 @@ export default function handler(req, res) {
     merchantId,
     amount,
     currency,
-    crc,
+    crc
   };
 
   // Utwórz string do podpisania
